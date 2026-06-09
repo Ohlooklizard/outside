@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outside</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-image: url("background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .glados-button {
+      position: fixed;
+      top: 35px;
+      left: 40px;
+      width: 220px;
+      height: auto;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .middle-button {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: auto;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .bottom-left-button {
+      position: fixed;
+      bottom: 35px;
+      left: 40px;
+      width: 100px;
+      height: auto;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    #loadingScreen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loadingScreen" onclick="closeLoadingScreen()">
+    <img src="loading.jpg" alt="Loading Screen">
+  </div>
+
+  <img id="gladosButton" src="glados.png" alt="GLaDOS Button" class="glados-button">
+  <audio id="gladosAudio" src="glados.mp3"></audio>
+
+  <audio id="moosicAudio" src="moosic.mp3" loop></audio>
+
+  <img id="cakeButton" src="click.JPG" alt="Cake Button" class="middle-button">
+
+  <img id="exitButton" src="exit.JPG" alt="Exit Button" class="bottom-left-button">
+
+  <script>
+    const moosicAudio = document.getElementById("moosicAudio");
+    const gladosAudio = document.getElementById("gladosAudio");
+    const cakeButton = document.getElementById("cakeButton");
+    const exitButton = document.getElementById("exitButton");
+
+    let cakeShown = false;
+
+    function startmoosicAudio() {
+      moosicAudio.volume = 0.35;
+      moosicAudio.play().catch(() => {});
+    }
+
+    function closeLoadingScreen() {
+      document.getElementById("loadingScreen").style.display = "none";
+      startmoosicAudio();
+    }
+
+    window.addEventListener("load", startmoosicAudio);
+
+    ["click", "keydown"].forEach(eventName => {
+      document.addEventListener(eventName, startmoosicAudio, { once: true });
+    });
+
+    gladosButton.addEventListener("click", () => {
+      gladosAudio.currentTime = 0;
+      gladosAudio.play();
+    });
+
+    cakeButton.addEventListener("click", () => {
+      cakeShown = !cakeShown;
+      cakeButton.src = cakeShown ? "cake.jpg" : "click.JPG";
+    });
+
+    exitButton.addEventListener("click", () => {
+      window.location.href = "https://ohlooklizard.github.io/outside/";
+    });
+  </script>
+</body>
+</html>
