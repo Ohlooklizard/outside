@@ -28,7 +28,10 @@
       height: auto;
       cursor: pointer;
       z-index: 20;
-    }
+
+        opacity: 0;
+  transition: opacity 5s ease;
+}
 
     .invisible-zone {
       position: fixed;
@@ -58,6 +61,37 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .video-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-box {
+  position: relative;
+  width: 80vw;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 24px;
+  cursor: pointer;
+}
+    
   </style>
 </head>
 
@@ -68,43 +102,69 @@
 
   <audio id="peacefulAudio" src="peaceful.mp3" loop></audio>
   <audio id="blublubAudio" src="blublub.mp3"></audio>
-  <img id="youtubeButton" src="youtube.jpg" alt="YouTube Button" class="bottom-right-button">
+  
+  <img id="playButton" src="play.png" alt="Play Button" class="bottom-right-button">
 
+     <button
+    id="invisibleZone"
+    class="invisible-zone"
+    aria-label="blub blub zone"
+  ></button>
+ </div>
+
+  <div id="videoPopup" class="video-popup">
+  <div class="video-box">
+    <button id="closeVideo" class="close-button">X</button>
+
+    <iframe
+      id="youtubeVideo"
+      width="560"
+      height="315"
+      src=""
+      title="YouTube video player"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+  
   <script>
     const peacefulAudio = document.getElementById("peacefulAudio");
-    const cakeButton = document.getElementById("cakeButton");
-
-    let cakeShown = false;
-
-    function startmoosicAudio() {
-      moosicAudio.volume = 0.35;
-      moosicAudio.play().catch(() => {});
+    const playButton = document.getElementById("playButton");
+  const invisibleZone = document.getElementById("invisibleZone");
+    
+    function startpeacefulAudio() {
+      peacefulAudio.volume = 0.35;
+      peacefulAudio.play().catch(() => {});
     }
 
     function closeLoadingScreen() {
       document.getElementById("loadingScreen").style.display = "none";
-      startmoosicAudio();
+      startpeacefulAudio();
     }
 
-    window.addEventListener("load", startmoosicAudio);
+    window.addEventListener("load", startpeacefulAudio);
 
     ["click", "keydown"].forEach(eventName => {
-      document.addEventListener(eventName, startmoosicAudio, { once: true });
+      document.addEventListener(eventName, startpeacefulAudio, { once: true });
     });
 
-    gladosButton.addEventListener("click", () => {
-      gladosAudio.currentTime = 0;
-      gladosAudio.play();
-    });
+  const videoButton = document.getElementById("playButton");
+const videoPopup = document.getElementById("playPopup");
+const youtubeVideo = document.getElementById("youtubeVideo");
+const closeVideo = document.getElementById("closeVideo");
 
-    cakeButton.addEventListener("click", () => {
-      cakeShown = !cakeShown;
-      cakeButton.src = cakeShown ? "cake.jpg" : "click.JPG";
-    });
+playButton.addEventListener("click", () => {
+  playPopup.style.display = "flex";
+  youtubeVideo.src = "https://www.youtube.com/watch?v=kKX82mHkXoc";
+});
 
-    exitButton.addEventListener("click", () => {
-      window.location.href = "https://ohlooklizard.github.io/outside/";
-    });
+closeVideo.addEventListener("click", () => {
+  videoPopup.style.display = "none";
+  youtubeVideo.src = "";
+});
+
   </script>
 </body>
 </html>
