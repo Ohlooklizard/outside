@@ -38,7 +38,7 @@
       top: 35px;
       left: 40px;
       width: 200px;
-      height: auto;
+      height: 200px;
       cursor: pointer;
       background: transparent;
       border: none;
@@ -166,7 +166,8 @@ const invisibleZone = document.getElementById("invisibleZone");
 const videoPopup = document.getElementById("videoPopup");
 const youtubeVideo = document.getElementById("youtubeVideo");
 const closeVideo = document.getElementById("closeVideo");
-
+const blublubAudio = document.getElementById("blublubAudio");
+    
 function startpeacefulAudio() {
   peacefulAudio.volume = 0.35;
   peacefulAudio.play().catch(() => {});
@@ -194,6 +195,11 @@ playButton.addEventListener("click", () => {
   youtubeVideo.src = "https://www.youtube.com/embed/kKX82mHkXoc?autoplay=1";
 });
 
+    invisibleZone.addEventListener("click", () => {
+  blublubAudio.currentTime = 0;
+  blublubAudio.play();
+});
+    
 closeVideo.addEventListener("click", () => {
   videoPopup.style.display = "none";
   youtubeVideo.src = "";
