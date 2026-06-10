@@ -20,7 +20,7 @@
       background-color: black; 
     }
 
-    .bottom-right-button {
+    .play-button {
       position: fixed;
       bottom: 35px;
       left: 40px;
@@ -29,7 +29,7 @@
       cursor: pointer;
       z-index: 20;
 
-        opacity: 0;
+        opacity: 1;
   transition: opacity 5s ease;
 }
 
@@ -103,14 +103,13 @@
   <audio id="peacefulAudio" src="peaceful.mp3" loop></audio>
   <audio id="blublubAudio" src="blublub.mp3"></audio>
   
-  <img id="playButton" src="play.png" alt="Play Button" class="bottom-right-button">
+  <img id="playButton" src="play.png" alt="Play Button" class="play-button">
 
      <button
     id="invisibleZone"
     class="invisible-zone"
     aria-label="blub blub zone"
   ></button>
- </div>
 
   <div id="videoPopup" class="video-popup">
   <div class="video-box">
@@ -130,41 +129,40 @@
 </div>
   
   <script>
+
     const peacefulAudio = document.getElementById("peacefulAudio");
-    const playButton = document.getElementById("playButton");
-  const invisibleZone = document.getElementById("invisibleZone");
-    
-    function startpeacefulAudio() {
-      peacefulAudio.volume = 0.35;
-      peacefulAudio.play().catch(() => {});
-    }
-
-    function closeLoadingScreen() {
-      document.getElementById("loadingScreen").style.display = "none";
-      startpeacefulAudio();
-    }
-
-    window.addEventListener("load", startpeacefulAudio);
-
-    ["click", "keydown"].forEach(eventName => {
-      document.addEventListener(eventName, startpeacefulAudio, { once: true });
-    });
-
-  const videoButton = document.getElementById("playButton");
-const videoPopup = document.getElementById("playPopup");
+const playButton = document.getElementById("playButton");
+const invisibleZone = document.getElementById("invisibleZone");
+const videoPopup = document.getElementById("videoPopup");
 const youtubeVideo = document.getElementById("youtubeVideo");
 const closeVideo = document.getElementById("closeVideo");
 
+function startpeacefulAudio() {
+  peacefulAudio.volume = 0.35;
+  peacefulAudio.play().catch(() => {});
+}
+
+function closeLoadingScreen() {
+  document.getElementById("loadingScreen").style.display = "none";
+  startpeacefulAudio();
+}
+
+window.addEventListener("load", startpeacefulAudio);
+
+["click", "keydown"].forEach(eventName => {
+  document.addEventListener(eventName, startpeacefulAudio, { once: true });
+});
+
 playButton.addEventListener("click", () => {
-  playPopup.style.display = "flex";
-  youtubeVideo.src = "https://www.youtube.com/watch?v=kKX82mHkXoc";
+  videoPopup.style.display = "flex";
+  youtubeVideo.src = "https://www.youtube.com/embed/kKX82mHkXoc?autoplay=1";
 });
 
 closeVideo.addEventListener("click", () => {
   videoPopup.style.display = "none";
   youtubeVideo.src = "";
 });
-
+    
   </script>
 </body>
 </html>
