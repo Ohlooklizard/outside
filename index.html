@@ -20,37 +20,28 @@
       overflow: hidden;
     }
 
-    .glados-button {
-      position: fixed;
-      top: 35px;
-      left: 40px;
-      width: 220px;
-      height: auto;
-      cursor: pointer;
-      z-index: 20;
-    }
-
-    .middle-button {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px;
-      height: auto;
-      cursor: pointer;
-      z-index: 20;
-    }
-
-    .bottom-left-button {
+    .bottom-right-button {
       position: fixed;
       bottom: 35px;
       left: 40px;
-      width: 100px;
+      width: 150px;
       height: auto;
       cursor: pointer;
       z-index: 20;
     }
 
+    .invisible-zone {
+      position: fixed;
+      top: 40vh;
+      right: 64vw;
+      width: 7vw;
+      height: 9vh;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      z-index: 30;
+    }
+    
     #loadingScreen {
       position: fixed;
       top: 0;
@@ -75,20 +66,13 @@
     <img src="loading.jpg" alt="Loading Screen">
   </div>
 
-  <img id="gladosButton" src="glados.png" alt="GLaDOS Button" class="glados-button">
-  <audio id="gladosAudio" src="glados.mp3"></audio>
-
-  <audio id="moosicAudio" src="moosic.mp3" loop></audio>
-
-  <img id="cakeButton" src="click.JPG" alt="Cake Button" class="middle-button">
-
-  <img id="exitButton" src="exit.JPG" alt="Exit Button" class="bottom-left-button">
+  <audio id="peacefulAudio" src="peaceful.mp3" loop></audio>
+  <audio id="blublubAudio" src="blublub.mp3"></audio>
+  <img id="youtubeButton" src="youtube.jpg" alt="YouTube Button" class="bottom-right-button">
 
   <script>
-    const moosicAudio = document.getElementById("moosicAudio");
-    const gladosAudio = document.getElementById("gladosAudio");
+    const peacefulAudio = document.getElementById("peacefulAudio");
     const cakeButton = document.getElementById("cakeButton");
-    const exitButton = document.getElementById("exitButton");
 
     let cakeShown = false;
 
