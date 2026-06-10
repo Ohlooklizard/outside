@@ -35,10 +35,10 @@
 
     .invisible-zone {
       position: fixed;
-      top: 60px;
-      left: 130px;
-      width: 150px;
-      height: 150px;
+      top: 90px;
+      left: 300px;
+      width: 140px;
+      height: 140px;
       cursor: pointer;
       background: transparent;
       border: none;
@@ -127,7 +127,7 @@
   </div>
 
   <audio id="peacefulAudio" src="peaceful.mp3" loop></audio>
-  <audio id="blublubAudio" src="blublub.mp3"></audio>
+  <audio id="blubblubAudio" src="blubblub.mp3"></audio>
   
   <img id="playButton" src="play.PNG" alt="Play Button" class="play-button">
 
@@ -188,7 +188,7 @@ window.addEventListener("load", startpeacefulAudio);
 
 setTimeout(() => {
   friendshipMessage.classList.add("visible");
-}, 8000);
+}, 9000);
     
 playButton.addEventListener("click", () => {
   videoPopup.style.display = "flex";
